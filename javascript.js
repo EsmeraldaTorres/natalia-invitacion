@@ -1,4 +1,41 @@
-var countDownDate = new Date("Nov 13, 2022 15:30").getTime();
+const audio = document.getElementById("audio");
+const playPause = document.getElementById("play");
+
+function abrir() {
+  document.getElementById("sobre-arriba").classList.add("animate__fadeOutUp");
+  document.getElementById("sobre-abajo").classList.add("animate__slideOutDown");
+  document.getElementById("logo").classList.remove("animate__infinite");
+
+  document.getElementById("parent-div").classList.remove("test-class");
+  document.getElementsByTagName("body")[0].classList.remove("avoiding-scroll");
+
+  window.scrollTo(0, 0);
+  audio.play();
+
+  setTimeout(function () {
+    document.getElementById("logo").classList.add("hide");
+    document.getElementById("hoja-principal").classList.add("hide");
+    document.getElementById("invitacion").classList.remove("hide");
+  }, 2500);
+}
+
+// auidio
+
+playPause.addEventListener("click", () => {
+  if (audio.paused || audio.ended) {
+    playPause.querySelector(".pause-btn").classList.toggle("d-none");
+    playPause.querySelector(".play-btn").classList.toggle("d-none");
+    audio.play();
+  } else {
+    audio.pause();
+    playPause.querySelector(".pause-btn").classList.toggle("d-none");
+    playPause.querySelector(".play-btn").classList.toggle("d-none");
+  }
+});
+
+// Cuenta regresiva -------------------------------------------------------------------
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 29, 2023 18:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function () {
@@ -17,17 +54,16 @@ var x = setInterval(function () {
   // Output the result in an element with id="demo"
   document.getElementById("demo").innerHTML = `
   <div class="d-flex justify-content-center">
-    <div class="cuenta " ><div>
-    <div class=" txt-pink">${days}</div><div class="cuenta-regresiva"> días</div>
+    <div class="cuenta p-4" >
+  <span>${days} días</span>
+  <span class="ml-2 mr-2"> : </span>  
+  <span>${hours} hrs</span> 
+  <span class="ml-2 mr-2"> : </span>   
+  <span>${minutes} min</span>
+  <span class="ml-2 mr-2"> : </span>  
+  <span>${seconds} seg</span> 
     </div>
-    <div>
-    <div class=" txt-pink">${hours}</div><div class="cuenta-regresiva"> horas</div>
-    </div>
-    <div>
-    <div class=" txt-pink">${minutes}</div><div class="cuenta-regresiva"> min</div>
-    </div>
-    </div>
-    </div>
+  </div>
     `;
   // If the count down is over, write some text
   if (distance < 0) {
@@ -35,37 +71,5 @@ var x = setInterval(function () {
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
-// -------------------------------AUDIO
-const audio = document.getElementById("audio");
-const playPause = document.getElementById("play");
 
-playPause.addEventListener("click", () => {
-  if (audio.paused || audio.ended) {
-    playPause.querySelector(".pause-btn").classList.toggle("hide");
-    playPause.querySelector(".play-btn").classList.toggle("hide");
-    audio.play();
-  } else {
-    audio.pause();
-    playPause.querySelector(".pause-btn").classList.toggle("hide");
-    playPause.querySelector(".play-btn").classList.toggle("hide");
-  }
-});
-
-function abrir() {
-  document.getElementById("sobre-arriba").classList.add("animate__fadeOutUp");
-  document.getElementById("sobre-abajo").classList.add("animate__slideOutDown");
-  document.getElementById("logo").classList.remove("animate__infinite");
-  document.getElementById("pulsa").classList.add("hide");
-  document.getElementById("parent-div").classList.remove("test-class");
-  document.getElementsByTagName("body")[0].classList.remove("avoiding-scroll");
-
-  window.scrollTo(0, 0);
-  setTimeout(function () {
-    document.getElementById("logo").classList.add("hide");
-    document.getElementById("hoja-principal").classList.add("hide");
-    document.getElementById("invitacion").classList.remove("hide");
-    document.getElementById("nombre").classList.add("animate__zoomIn");
-    document.getElementById("img-1").classList.add("animate__slideInUp");
-    audio.play();
-  }, 2500);
-}
+// carousel
